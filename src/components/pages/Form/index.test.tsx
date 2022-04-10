@@ -2,7 +2,7 @@
 
 import { fireEvent, render } from '@testing-library/react';
 import React from 'react';
-import { Form, hasInputValue } from './Form';
+import Form, { hasInputValue } from '.';
 
 interface InputElement extends HTMLElement {
     value?: string
