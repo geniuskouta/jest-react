@@ -6,10 +6,6 @@ interface PostData {
   [key: string]: any
 }
 
-interface PostResponse extends Response {
-  data?: {}
-}
-
 export default function usePostRequest(url: string, postData: PostData) {
   const [data, setData] = useState<{} | null>(null);
   const [error, setError] = useState<unknown | null>(null);
@@ -18,7 +14,7 @@ export default function usePostRequest(url: string, postData: PostData) {
   const postRequest = async() => {
     try {
       setLoading(true);
-      const response: PostResponse = await fetch(url, {
+      const response: Response = await fetch(url, {
         method: 'POST',
         body: JSON.stringify(postData),
         headers: {
@@ -26,8 +22,8 @@ export default function usePostRequest(url: string, postData: PostData) {
         }
       });
 
-      if(response.data) {
-        setData(response.data);
+      if(response) {
+        setData(response);
       }
 
     } catch(err: unknown) {

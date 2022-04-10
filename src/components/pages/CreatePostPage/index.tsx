@@ -1,36 +1,34 @@
 import React, { ReactElement, useState, useEffect } from 'react';
-import usePostRequest from 'src/hooks/usePostRequest';
-import { useEnterSubmit, useInput } from '../../../hooks';
+import { useEnterSubmit, useInput, usePostRequest } from '../../../hooks';
+import { useNavigate } from "react-router-dom";
 
 export function hasInputValue(value: string) {
     return value.length > 0;
 }
 
-export default function Form(): ReactElement {
-    const [loggedIn, setLogin] = useState(false);
-
+export default function CreatePostPage(): ReactElement {
     const title = useInput('');
     const body = useInput('');
-    const { loading, postRequest} = usePostRequest('https://jsonplaceholder.typicode.com/posts', {
+    const { data, loading, postRequest} = usePostRequest('https://jsonplaceholder.typicode.com/posts', {
         title: title,
         body: body
     });
     const onSubmit = () => {
-        postRequest().then(() => setLogin(true));
+        postRequest();
     }
     useEnterSubmit(onSubmit, title.value !== '' && body.value !== '', loading);
 
-    if (loggedIn) {
-        return (
-            <div>
-                logged in!
-            </div>
-        );
-    }
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if(data) {
+            navigate('timeline');
+        }
+    }, [data]);
 
     return (
         <form>
-            <div>Enter to submit</div>
+            <h1>Create a post</h1>
             <label>
                 Title <input type="text" name="title" onChange={title.onChange} />
             </label>

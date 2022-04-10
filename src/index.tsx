@@ -1,11 +1,16 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { Form } from './components/pages';
+import { BrowserRouter } from "react-router-dom";
+import App from './App';
 
 const rootElement: HTMLElement | null = document.getElementById('root');
 
 if(rootElement) {
   const root = createRoot(rootElement);
 
-  root.render(<Form />);  
+  root.render(
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  );  
 }
