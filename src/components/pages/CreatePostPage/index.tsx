@@ -2,10 +2,6 @@ import React, { ReactElement, useState, useEffect } from 'react';
 import { useEnterSubmit, useInput, usePostRequest } from '../../../hooks';
 import { useNavigate } from "react-router-dom";
 
-export function hasInputValue(value: string) {
-    return value.length > 0;
-}
-
 export default function CreatePostPage(): ReactElement {
     const title = useInput('');
     const body = useInput('');
@@ -19,7 +15,6 @@ export default function CreatePostPage(): ReactElement {
     useEnterSubmit(onSubmit, title.value !== '' && body.value !== '', loading);
 
     const navigate = useNavigate();
-
     useEffect(() => {
         if(data) {
             navigate('timeline');
