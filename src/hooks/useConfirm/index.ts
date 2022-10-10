@@ -7,12 +7,12 @@ type ConfirmParams = {
   cbFail?: () => void
 }
 
-type CustomConfirm = {
+export type CustomConfirm = {
   proceed: (value: unknown) => void,
   cancel: () => void
 };
 
-type useConfirm = {
+export type useConfirm = {
   confirm: ({
     confirmMessage,
     cbSuccess,
@@ -31,8 +31,8 @@ export default function useConfirm (confirmType: ConfirmAction) {
   const confirmWindow = async ({ confirmMessage }: ConfirmParams) => {
     const confirmed = window.confirm(confirmMessage);
     return new Promise((resolve, reject) => {
-      return confirmed ? resolve(true) : reject(false); 
-    });
+      return confirmed ? resolve(true) : reject(false);
+    }) as Promise<boolean>;
   };
 
   const confirmCustom = async({ cbSuccess, cbFail }: ConfirmParams) => {

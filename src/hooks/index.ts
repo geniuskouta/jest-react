@@ -3,3 +3,4 @@ export { default as useInput } from "./useInput";
 export { default as usePostRequest } from "./usePostRequest";
 export { default as useGetRequest } from "./useGetRequest";
 export { default as useConfirm } from "./useConfirm";
+export { default as useHistoryBlock } from "./useHistoryBlock";

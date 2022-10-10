@@ -1,32 +1,37 @@
 import React, { ReactElement, useState, useEffect } from 'react';
 import { ConfirmModal } from '@molecules';
-import { useConfirm } from '@hooks';
+import { useConfirm, useHistoryBlock } from '@hooks';
 import { ConfirmAction } from '@enums';
 
 export default function PostTimelinePage(): ReactElement {
     const [showModal, setShowModal] = useState(false);
     const { confirm, customConfirm } = useConfirm(ConfirmAction.CUSTOM);
 
-    const confirmMessage = async () => {
+    const confirmLogout = async () => {
+        setShowModal(true);
         const confirmed = await confirm({
             cbSuccess: () => setShowModal(false),
             cbFail: () => setShowModal(false),
         });
-        console.log('confirmed', confirmed);
+        return confirmed;
     }
 
-    useEffect(() => {
-        if(showModal) {
-            confirmMessage();
-        }
-    }, [showModal]);
+    useHistoryBlock({ confirm: confirmLogout, blockCondition: true });
+
+    const confirmMessage = async () => {
+        setShowModal(true);
+        await confirm({
+            cbSuccess: () => setShowModal(false),
+            cbFail: () => setShowModal(false),
+        });
+    }
 
     return (
         <>
             <div>Timeline</div>
             {
                 !showModal ? 
-                    <button onClick={() => setShowModal(true)}>open</button>
+                    <button onClick={() => confirmMessage()}>OK</button>
                 : <ConfirmModal
                 onConfirm={() => customConfirm?.proceed({})}
                 onCancel={() => customConfirm.cancel()} />
