@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@enums": ["src/enums/index.ts"],
+      "@hooks": ["src/hooks/index.ts"],
+      "@pages": ["src/components/pages/index.ts"],
+      "@molecules": ["src/components/molecules/index.ts"],
+    }
+  },
+}

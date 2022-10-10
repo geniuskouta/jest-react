@@ -1,7 +1,7 @@
 import React, { ReactElement, useState, useEffect } from 'react';
-import { ConfirmModal } from '../../molecules';
-import { useConfirm } from '../../../hooks';
-import { ConfirmAction } from '../../../enum';
+import { ConfirmModal } from '@molecules';
+import { useConfirm } from '@hooks';
+import { ConfirmAction } from '@enums';
 
 export default function PostTimelinePage(): ReactElement {
     const [showModal, setShowModal] = useState(false);

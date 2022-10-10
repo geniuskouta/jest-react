@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ConfirmAction } from '../../enum';
+import { ConfirmAction } from '@enums';
 
 type ConfirmParams = {
   confirmMessage?: string,

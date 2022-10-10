@@ -1,5 +1,5 @@
 import React, { ReactElement, useState, useEffect } from 'react';
-import { useEnterSubmit, useInput, usePostRequest } from '../../../hooks';
+import { useEnterSubmit, useInput, usePostRequest } from '@hooks';
 import { useNavigate } from "react-router-dom";
 
 export default function CreatePostPage(): ReactElement {
