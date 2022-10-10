@@ -4,6 +4,9 @@ import useEnterSubmit from '.';
 const submit = jest.fn();
 
 describe('useEnterSubmit', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
   it('should add a keydown event', () => {
     renderHook(() => useEnterSubmit(submit, true, false));
     fireEvent.keyDown(window, { key: 'Enter' });
